@@ -21,6 +21,7 @@ dependencies:
   charts_flutter: ^0.8.1
   timeago: ^2.0.22
   pull_to_refresh: ^1.5.7
+  passcode_screen: ^1.0.2
   
 dev_dependencies:
   flutter_test:

@@ -9,6 +9,9 @@ import 'package:blitz_gui/widgets/charts/half_gauge_chart.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:passcode_screen/circle.dart';
+import 'package:passcode_screen/keyboard.dart';
+import 'package:passcode_screen/passcode_screen.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -48,6 +51,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Completer<void> _refreshCompleter;
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
+  final StreamController<bool> _verificationNotifier =
+      StreamController<bool>.broadcast();
+  bool wantsToQuit = false;
 
   @override
   void initState() {
@@ -59,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void dispose() {
     _systemInfoBloc.close();
+    _verificationNotifier.close();
     super.dispose();
   }
 
@@ -79,6 +86,14 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
+          actions: <Widget>[
+            IconButton(
+                icon: Icon(Icons.close),
+                onPressed: () {
+                  wantsToQuit = true;
+                  _showLockScreen(context, opaque: false);
+                })
+          ],
         ),
         body: BlocBuilder(
           bloc: _systemInfoBloc,
@@ -139,6 +154,48 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
     );
+  }
+
+  _showLockScreen(
+    BuildContext context, {
+    bool opaque,
+    CircleUIConfig circleUIConfig,
+    KeyboardUIConfig keyboardUIConfig,
+  }) {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        opaque: opaque,
+        pageBuilder: (context, animation, secondaryAnimation) {
+          return PasscodeScreen(
+            title: 'Passcode',
+            passwordDigits: 4,
+            circleUIConfig: circleUIConfig,
+            keyboardUIConfig: keyboardUIConfig,
+            passwordEnteredCallback: _onPasscodeEntered,
+            cancelLocalizedText: 'Cancel',
+            deleteLocalizedText: 'Delete',
+            shouldTriggerVerification: _verificationNotifier.stream,
+            backgroundColor: Colors.black.withOpacity(0.9),
+            cancelCallback: _onPasscodeCancelled,
+          );
+        },
+      ),
+    );
+  }
+
+  _onPasscodeEntered(String enteredPasscode) {
+    bool isValid = '' == enteredPasscode;
+    _verificationNotifier.add(isValid);
+    if (isValid) {
+      if (wantsToQuit) {
+        exit(1);
+      }
+    }
+  }
+
+  _onPasscodeCancelled() {
+    wantsToQuit = false;
   }
 
   _getTempChart(double temp, ThemeData theme) {
