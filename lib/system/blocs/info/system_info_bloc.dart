@@ -29,16 +29,9 @@ final String _getInfoQuery = r'''
 ''';
 
 class SystemInfoBloc extends Bloc<SystemInfoEvent, SystemInfoState> {
-  GraphQLClient _client;
+  final GraphQLClient _client;
 
-  SystemInfoBloc() {
-    final _httpLink = HttpLink(uri: 'http://127.0.0.1:3000/graphql');
-
-    _client = GraphQLClient(
-      cache: InMemoryCache(),
-      link: _httpLink,
-    );
-  }
+  SystemInfoBloc(this._client);
 
   @override
   SystemInfoState get initialState => InitialSystemInfoState();

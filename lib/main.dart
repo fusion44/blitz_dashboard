@@ -5,6 +5,7 @@ import 'package:blitz_gui/system/system_info_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graphql/client.dart';
 import 'package:passcode_screen/circle.dart';
 import 'package:passcode_screen/keyboard.dart';
 import 'package:passcode_screen/passcode_screen.dart';
@@ -38,7 +39,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _systemInfoBloc = SystemInfoBloc();
+  GraphQLClient _gqlClient;
+
+  SystemInfoBloc _systemInfoBloc;
   final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
   final StreamController<bool> _verificationNotifier =
@@ -47,7 +50,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
+    // setup GraphQL client
+    final _httpLink = HttpLink(uri: 'http://127.0.0.1:3000/graphql');
+
+    _gqlClient = GraphQLClient(
+      cache: InMemoryCache(),
+      link: _httpLink,
+    );
+
+    _systemInfoBloc = SystemInfoBloc(_gqlClient);
     _systemInfoBloc.add(LoadSystemInfoEvent());
+
     super.initState();
   }
 
