@@ -57,7 +57,7 @@ class HalfGaugeChart extends StatelessWidget {
         ? const EdgeInsets.only(top: 50.0)
         : const EdgeInsets.only(top: 60.0);
 
-    ThemeData theme = Theme.of(context);
+    var theme = Theme.of(context);
     return Container(
       width: miniInfoWidgetSize.width,
       height: miniInfoWidgetSize.height,

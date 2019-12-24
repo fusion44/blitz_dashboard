@@ -1,6 +1,6 @@
 import 'dart:async';
+import 'package:blitz_gui/system/models/system_info.dart';
 import 'package:bloc/bloc.dart';
-import 'package:blitz_gui/info/bloc/models.dart';
 import 'package:graphql/client.dart';
 import './bloc.dart';
 
@@ -32,9 +32,7 @@ class SystemInfoBloc extends Bloc<SystemInfoEvent, SystemInfoState> {
   GraphQLClient _client;
 
   SystemInfoBloc() {
-    final HttpLink _httpLink = HttpLink(
-      uri: 'http://127.0.0.1:3000/graphql',
-    );
+    final _httpLink = HttpLink(uri: 'http://127.0.0.1:3000/graphql');
 
     _client = GraphQLClient(
       cache: InMemoryCache(),

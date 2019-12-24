@@ -67,28 +67,28 @@ class BitcoinBlockChainInfo {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['chain'] = this.chain;
-    data['blocks'] = this.blocks;
-    data['headers'] = this.headers;
-    data['bestblockhash'] = this.bestBlockHash;
-    data['difficulty'] = this.difficulty;
-    data['mediantime'] = this.medianTime;
-    data['verificationprogress'] = this.verificationProgress;
-    data['initialblockdownload'] = this.initialBlockDownload;
-    data['chainwork'] = this.chainWork;
-    data['size_on_disk'] = this.sizeOnDisk;
-    data['pruned'] = this.pruned;
-    data['pruneheight'] = this.pruneHeight;
-    data['automatic_pruning'] = this.automaticPruning;
-    data['prune_target_size'] = this.pruneTargetSize;
-    if (this.softforks != null) {
-      data['softforks'] = this.softforks.map((v) => v.toJson()).toList();
+    final data = <String, dynamic>{};
+    data['chain'] = chain;
+    data['blocks'] = blocks;
+    data['headers'] = headers;
+    data['bestblockhash'] = bestBlockHash;
+    data['difficulty'] = difficulty;
+    data['mediantime'] = medianTime;
+    data['verificationprogress'] = verificationProgress;
+    data['initialblockdownload'] = initialBlockDownload;
+    data['chainwork'] = chainWork;
+    data['size_on_disk'] = sizeOnDisk;
+    data['pruned'] = pruned;
+    data['pruneheight'] = pruneHeight;
+    data['automatic_pruning'] = automaticPruning;
+    data['prune_target_size'] = pruneTargetSize;
+    if (softforks != null) {
+      data['softforks'] = softforks.map((v) => v.toJson()).toList();
     }
-    if (this.bip9Softforks != null) {
-      data['bip9_softforks'] = this.bip9Softforks.toJson();
+    if (bip9Softforks != null) {
+      data['bip9_softforks'] = bip9Softforks.toJson();
     }
-    data['warnings'] = this.warnings;
+    data['warnings'] = warnings;
     return data;
   }
 }
@@ -107,11 +107,11 @@ class Softforks {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['id'] = this.id;
-    data['version'] = this.version;
-    if (this.reject != null) {
-      data['reject'] = this.reject.toJson();
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['version'] = version;
+    if (reject != null) {
+      data['reject'] = reject.toJson();
     }
     return data;
   }
@@ -127,8 +127,8 @@ class Reject {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['status'] = this.status;
+    final data = <String, dynamic>{};
+    data['status'] = status;
     return data;
   }
 }
@@ -145,9 +145,9 @@ class Bip9Softforks {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    if (this.softfork != null) {
-      data['Softfork'] = this.softfork.toJson();
+    final data = <String, dynamic>{};
+    if (softfork != null) {
+      data['Softfork'] = softfork.toJson();
     }
     return data;
   }
@@ -181,14 +181,14 @@ class BitcoinSoftfork {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['status'] = this.status;
-    data['bit'] = this.bit;
-    data['startTime'] = this.startTime;
-    data['timeout'] = this.timeout;
-    data['since'] = this.since;
-    if (this.statistics != null) {
-      data['statistics'] = this.statistics.toJson();
+    final data = <String, dynamic>{};
+    data['status'] = status;
+    data['bit'] = bit;
+    data['startTime'] = startTime;
+    data['timeout'] = timeout;
+    data['since'] = since;
+    if (statistics != null) {
+      data['statistics'] = statistics.toJson();
     }
     return data;
   }
@@ -210,11 +210,11 @@ class BitcoinStatistics {
   }
 
   Map<String, dynamic> toJson() {
-    final data = Map<String, dynamic>();
-    data['period'] = this.period;
-    data['threshold'] = this.threshold;
-    data['count'] = this.count;
-    data['possible'] = this.possible;
+    final data = <String, dynamic>{};
+    data['period'] = period;
+    data['threshold'] = threshold;
+    data['count'] = count;
+    data['possible'] = possible;
     return data;
   }
 }

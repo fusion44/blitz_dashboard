@@ -1,5 +1,5 @@
+import 'package:blitz_gui/system/models/system_info.dart';
 import 'package:equatable/equatable.dart';
-import 'package:blitz_gui/info/bloc/models.dart';
 
 abstract class SystemInfoState extends Equatable {
   const SystemInfoState();
@@ -21,7 +21,7 @@ class LoadedSystemInfoState extends SystemInfoState {
   LoadedSystemInfoState(this.systemInfo);
 
   @override
-  List<Object> get props => [this.systemInfo.hashCode];
+  List<Object> get props => [systemInfo.hashCode];
 }
 
 class LoadSystemInfoErrorState extends SystemInfoState {

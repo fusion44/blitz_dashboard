@@ -37,18 +37,19 @@ class SystemInfo {
   /// included
   List<NetworkInterface> networkInterfaces;
 
-  SystemInfo(
-      {this.totalUptime,
-      this.totalUptimeIdle,
-      this.memTotal,
-      this.memFree,
-      this.memAvailable,
-      this.temperatureC,
-      this.temperatureF,
-      this.hardDriveTotal,
-      this.hardDriveFree,
-      this.hardDriveUsage,
-      this.networkInterfaces});
+  SystemInfo({
+    this.totalUptime,
+    this.totalUptimeIdle,
+    this.memTotal,
+    this.memFree,
+    this.memAvailable,
+    this.temperatureC,
+    this.temperatureF,
+    this.hardDriveTotal,
+    this.hardDriveFree,
+    this.hardDriveUsage,
+    this.networkInterfaces,
+  });
 
   SystemInfo.fromJson(Map<String, dynamic> json) {
     totalUptime = json['total_uptime'];
@@ -62,28 +63,28 @@ class SystemInfo {
     hardDriveFree = json['hard_drive_free'];
     hardDriveUsage = json['hard_drive_usage'];
     if (json['network_interfaces'] != null) {
-      networkInterfaces = new List<NetworkInterface>();
+      networkInterfaces = <NetworkInterface>[];
       json['network_interfaces'].forEach((v) {
-        networkInterfaces.add(new NetworkInterface.fromJson(v));
+        networkInterfaces.add(NetworkInterface.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['total_uptime'] = this.totalUptime;
-    data['total_uptime_idle'] = this.totalUptimeIdle;
-    data['mem_total'] = this.memTotal;
-    data['mem_free'] = this.memFree;
-    data['mem_available'] = this.memAvailable;
-    data['temperature_c'] = this.temperatureC;
-    data['temperature_f'] = this.temperatureF;
-    data['hard_drive_total'] = this.hardDriveTotal;
-    data['hard_drive_free'] = this.hardDriveFree;
-    data['hard_drive_usage'] = this.hardDriveUsage;
-    if (this.networkInterfaces != null) {
+    final data = <String, dynamic>{};
+    data['total_uptime'] = totalUptime;
+    data['total_uptime_idle'] = totalUptimeIdle;
+    data['mem_total'] = memTotal;
+    data['mem_free'] = memFree;
+    data['mem_available'] = memAvailable;
+    data['temperature_c'] = temperatureC;
+    data['temperature_f'] = temperatureF;
+    data['hard_drive_total'] = hardDriveTotal;
+    data['hard_drive_free'] = hardDriveFree;
+    data['hard_drive_usage'] = hardDriveUsage;
+    if (networkInterfaces != null) {
       data['network_interfaces'] =
-          this.networkInterfaces.map((v) => v.toJson()).toList();
+          networkInterfaces.map((v) => v.toJson()).toList();
     }
     return data;
   }

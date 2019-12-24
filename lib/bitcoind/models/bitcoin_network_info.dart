@@ -59,26 +59,25 @@ class BitcoinNetworkInfo {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['version'] = this.version;
-    data['subversion'] = this.subversion;
-    data['protocolversion'] = this.protocolVersion;
-    data['localservices'] = this.localServices;
-    data['localservicesnames'] = this.localServicesNames;
-    data['localrelay'] = this.localRelay;
-    data['timeoffset'] = this.timeOffset;
-    data['networkactive'] = this.networkActive;
-    data['connections'] = this.connections;
-    if (this.networks != null) {
-      data['networks'] = this.networks.map((v) => v.toJson()).toList();
+    final data = <String, dynamic>{};
+    data['version'] = version;
+    data['subversion'] = subversion;
+    data['protocolversion'] = protocolVersion;
+    data['localservices'] = localServices;
+    data['localservicesnames'] = localServicesNames;
+    data['localrelay'] = localRelay;
+    data['timeoffset'] = timeOffset;
+    data['networkactive'] = networkActive;
+    data['connections'] = connections;
+    if (networks != null) {
+      data['networks'] = networks.map((v) => v.toJson()).toList();
     }
-    data['relayfee'] = this.relayFee;
-    data['incrementalfee'] = this.incrementalFee;
-    if (this.localAddresses != null) {
-      data['localaddresses'] =
-          this.localAddresses.map((v) => v.toJson()).toList();
+    data['relayfee'] = relayFee;
+    data['incrementalfee'] = incrementalFee;
+    if (localAddresses != null) {
+      data['localaddresses'] = localAddresses.map((v) => v.toJson()).toList();
     }
-    data['warnings'] = this.warnings;
+    data['warnings'] = warnings;
     return data;
   }
 }
@@ -90,12 +89,13 @@ class BitcoinNetwork {
   String proxy;
   bool proxyRandomizeCredentials;
 
-  BitcoinNetwork(
-      {this.name,
-      this.limited,
-      this.reachable,
-      this.proxy,
-      this.proxyRandomizeCredentials});
+  BitcoinNetwork({
+    this.name,
+    this.limited,
+    this.reachable,
+    this.proxy,
+    this.proxyRandomizeCredentials,
+  });
 
   BitcoinNetwork.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -106,12 +106,12 @@ class BitcoinNetwork {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['name'] = this.name;
-    data['limited'] = this.limited;
-    data['reachable'] = this.reachable;
-    data['proxy'] = this.proxy;
-    data['proxy_randomize_credentials'] = this.proxyRandomizeCredentials;
+    final data = <String, dynamic>{};
+    data['name'] = name;
+    data['limited'] = limited;
+    data['reachable'] = reachable;
+    data['proxy'] = proxy;
+    data['proxy_randomize_credentials'] = proxyRandomizeCredentials;
     return data;
   }
 }
@@ -130,10 +130,10 @@ class LocalAddress {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['address'] = this.address;
-    data['port'] = this.port;
-    data['score'] = this.score;
+    final data = <String, dynamic>{};
+    data['address'] = address;
+    data['port'] = port;
+    data['score'] = score;
     return data;
   }
 }

@@ -25,12 +25,12 @@ class NetworkInterface {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['ip4'] = this.ip4;
-    data['ip6'] = this.ip6;
-    data['rx'] = this.rx;
-    data['tx'] = this.tx;
+    final data = <String, dynamic>{};
+    data['name'] = name;
+    data['ip4'] = ip4;
+    data['ip6'] = ip6;
+    data['rx'] = rx;
+    data['tx'] = tx;
     return data;
   }
 }
