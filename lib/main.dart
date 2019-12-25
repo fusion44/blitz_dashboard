@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:blitz_gui/bitcoind/bitcoin_info_widget.dart';
 import 'package:blitz_gui/system/system_info_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ import 'package:passcode_screen/keyboard.dart';
 import 'package:passcode_screen/passcode_screen.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import 'bitcoind/blocs/info/bloc.dart';
 import 'system/blocs/info/bloc.dart';
 
 void main() {
@@ -40,13 +42,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   GraphQLClient _gqlClient;
-
   SystemInfoBloc _systemInfoBloc;
+  BitcoinInfoBloc _bitcoinInfoBloc;
   final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
   final StreamController<bool> _verificationNotifier =
       StreamController<bool>.broadcast();
   bool wantsToQuit = false;
+
+  bool _systemInfoLoading = true;
+  bool _btcNetInfoLoading = true;
 
   @override
   void initState() {
@@ -61,6 +66,9 @@ class _MyHomePageState extends State<MyHomePage> {
     _systemInfoBloc = SystemInfoBloc(_gqlClient);
     _systemInfoBloc.add(LoadSystemInfoEvent());
 
+    _bitcoinInfoBloc = BitcoinInfoBloc(_gqlClient);
+    _bitcoinInfoBloc.add(LoadBitcoinInfoEvent());
+
     super.initState();
   }
 
@@ -73,17 +81,36 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _onRefresh() async {
     _systemInfoBloc.add(LoadSystemInfoEvent(useCache: false));
+    _bitcoinInfoBloc.add(LoadBitcoinInfoEvent(useCache: false));
+    _systemInfoLoading = true;
+    _btcNetInfoLoading = true;
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SystemInfoBloc, SystemInfoState>(
-      bloc: _systemInfoBloc,
-      listener: (_, SystemInfoState state) {
-        if (state is LoadedSystemInfoState) {
-          _refreshController?.refreshCompleted();
-        }
-      },
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<SystemInfoBloc, SystemInfoState>(
+          bloc: _systemInfoBloc,
+          listener: (_, state) {
+            if (state is LoadedSystemInfoState ||
+                state is LoadSystemInfoErrorState) {
+              _systemInfoLoading = false;
+              _checkLoadingState();
+            }
+          },
+        ),
+        BlocListener<BitcoinInfoBloc, BitcoinInfoState>(
+          bloc: _bitcoinInfoBloc,
+          listener: (_, state) {
+            if (state is LoadedBitcoinInfoState ||
+                state is LoadBitcoinInfoErrorState) {
+              _btcNetInfoLoading = false;
+              _checkLoadingState();
+            }
+          },
+        ),
+      ],
       child: Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
@@ -105,11 +132,26 @@ class _MyHomePageState extends State<MyHomePage> {
           child: MultiBlocProvider(
             providers: [
               BlocProvider<SystemInfoBloc>.value(value: _systemInfoBloc),
+              BlocProvider<BitcoinInfoBloc>.value(value: _bitcoinInfoBloc)
             ],
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[SystemInfoWidget()],
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 8.0,
+                      top: 8.0,
+                      right: 8.0,
+                      bottom: 4.0,
+                    ),
+                    child: SystemInfoWidget(),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                    child: BitcoinInfoWidget(),
+                  ),
+                ],
               ),
             ),
           ),
@@ -158,5 +200,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _onPasscodeCancelled() {
     wantsToQuit = false;
+  }
+
+  void _checkLoadingState() {
+    if (!_systemInfoLoading && !_btcNetInfoLoading) {
+      _refreshController?.refreshCompleted();
+    }
   }
 }
