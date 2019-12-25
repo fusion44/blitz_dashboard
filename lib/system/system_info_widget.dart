@@ -18,35 +18,40 @@ class SystemInfoWidget extends StatelessWidget {
             (state is LoadingSystemInfoState)) {
           return Center(child: Text('loading ...'));
         } else if (state is LoadedSystemInfoState) {
-          return Column(
-            children: <Widget>[
-              Text(
-                'System',
-                style: theme.textTheme.display3,
-                textAlign: TextAlign.center,
-              ),
-              Wrap(
-                alignment: WrapAlignment.spaceEvenly,
-                children: <Widget>[
-                  _getSSHLine(state.systemInfo.networkInterfaces, theme),
-                  _getTempChart(state.systemInfo.temperatureC, theme),
-                  _getMemChart(
-                    state.systemInfo.memTotal,
-                    state.systemInfo.memFree,
-                    state.systemInfo.memAvailable,
-                    theme,
-                  ),
-                  _getHDDChart(
-                    state.systemInfo.hardDriveTotal,
-                    state.systemInfo.hardDriveFree,
-                    state.systemInfo.hardDriveUsage,
-                    theme,
-                  ),
-                  _getTrafficWidget(state.systemInfo.networkInterfaces, theme),
-                  _getUptimeWidget(state.systemInfo.totalUptime, theme)
-                ],
-              ),
-            ],
+          return Card(
+            child: Column(
+              children: <Widget>[
+                Text(
+                  'System',
+                  style: theme.textTheme.display3,
+                  textAlign: TextAlign.center,
+                ),
+                Wrap(
+                  alignment: WrapAlignment.spaceEvenly,
+                  children: <Widget>[
+                    _getSSHLine(state.systemInfo.networkInterfaces, theme),
+                    _getTempChart(state.systemInfo.temperatureC, theme),
+                    _getMemChart(
+                      state.systemInfo.memTotal,
+                      state.systemInfo.memFree,
+                      state.systemInfo.memAvailable,
+                      theme,
+                    ),
+                    _getHDDChart(
+                      state.systemInfo.hardDriveTotal,
+                      state.systemInfo.hardDriveFree,
+                      state.systemInfo.hardDriveUsage,
+                      theme,
+                    ),
+                    _getTrafficWidget(
+                      state.systemInfo.networkInterfaces,
+                      theme,
+                    ),
+                    _getUptimeWidget(state.systemInfo.totalUptime, theme)
+                  ],
+                ),
+              ],
+            ),
           );
         } else {
           return Center(child: Card(child: Text('I\'m confused!')));
