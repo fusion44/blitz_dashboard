@@ -126,7 +126,7 @@ class LocalAddress {
   LocalAddress.fromJson(Map<String, dynamic> json) {
     address = json['address'];
     port = json['port'];
-    score = json['score'];
+    score = json['score'].toDouble();
   }
 
   Map<String, dynamic> toJson() {
