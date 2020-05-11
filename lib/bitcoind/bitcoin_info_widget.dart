@@ -22,7 +22,7 @@ class BitcoinInfoWidget extends StatelessWidget {
               children: <Widget>[
                 Text(
                   'Bitcoin',
-                  style: theme.textTheme.display3,
+                  style: theme.textTheme.headline2,
                   textAlign: TextAlign.center,
                 ),
                 _getPublicAddressRow(state.info, theme),
@@ -81,7 +81,7 @@ class BitcoinInfoWidget extends StatelessWidget {
   }
 
   Widget _getPublicAddressRow(BitcoinInfo info, ThemeData theme) {
-    var style = theme.textTheme.body1.copyWith(fontSize: 25.0);
+    var style = theme.textTheme.bodyText2.copyWith(fontSize: 25.0);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[

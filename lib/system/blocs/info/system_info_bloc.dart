@@ -24,7 +24,6 @@ class SystemInfoBloc extends Bloc<SystemInfoEvent, SystemInfoState> {
   ) async* {
     if (event is LoadSystemInfoEvent) {
       var error = false;
-      var errorReason;
 
       // cpu temp
       var res = await Process.run(

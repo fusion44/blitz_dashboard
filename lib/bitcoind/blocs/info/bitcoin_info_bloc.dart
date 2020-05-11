@@ -76,12 +76,8 @@ class BitcoinInfoBloc extends Bloc<BitcoinInfoEvent, BitcoinInfoState> {
         combined.addAll(b);
         combined.addAll(c);
 
-        if (true) {
-          var info = BitcoinInfo.fromJson(combined);
-          yield LoadedBitcoinInfoState(info);
-        } else {
-          yield LoadBitcoinInfoErrorState('Error??');
-        }
+        var info = BitcoinInfo.fromJson(combined);
+        yield LoadedBitcoinInfoState(info);
       } catch (e) {
         yield LoadBitcoinInfoErrorState(e.toString());
       }

@@ -18,7 +18,6 @@ class ConnectionManagerBloc
     extends Bloc<ConnectionManagerEvent, ConnectionManagerState> {
   ClientChannel _clientChannel;
   LightningClient _lightningClient;
-  bool _connected = false;
   StreamSubscription _prefsSubscription;
 
   LndConnectionData _currentActiveConnection;
@@ -38,9 +37,7 @@ class ConnectionManagerBloc
     ConnectionManagerEvent event,
   ) async* {
     if (event is AppStart) {
-      if (!_connected) {
-        await _establishConnection();
-      }
+      await _establishConnection();
       yield ConnectionEstablishedState();
     }
   }
@@ -76,16 +73,6 @@ class ConnectionManagerBloc
     LnConnectionDataProvider().channel = _clientChannel;
     LnConnectionDataProvider().macaroon = _currentActiveConnection.macaroon;
     LnConnectionDataProvider().lightningClient = _lightningClient;
-  }
-
-  void _releaseConnection() async {
-    if (_connected) {
-      _currentActiveConnection = null;
-      await _clientChannel.shutdown();
-      LnConnectionDataProvider().macaroon = null;
-      LnConnectionDataProvider().lightningClient = null;
-      _connected = false;
-    }
   }
 
   List<int> _prepareCertificate(String certificate) {

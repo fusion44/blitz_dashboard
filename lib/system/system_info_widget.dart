@@ -23,7 +23,7 @@ class SystemInfoWidget extends StatelessWidget {
               children: <Widget>[
                 Text(
                   'System',
-                  style: theme.textTheme.display3,
+                  style: theme.textTheme.headline2,
                   textAlign: TextAlign.center,
                 ),
                 Wrap(
@@ -126,13 +126,13 @@ class SystemInfoWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 60.0),
             child: Text('$up',
-                style: theme.textTheme.body1.copyWith(fontSize: 25.0)),
+                style: theme.textTheme.bodyText2.copyWith(fontSize: 25.0)),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 12.0),
             child: Text(
               'Last reboot',
-              style: theme.textTheme.display1,
+              style: theme.textTheme.headline4,
             ),
           )
         ],
@@ -152,7 +152,7 @@ class SystemInfoWidget extends StatelessWidget {
           children: <Widget>[
             Text(
               i.name,
-              style: theme.textTheme.display1.copyWith(fontSize: 20.0),
+              style: theme.textTheme.headline4.copyWith(fontSize: 20.0),
             ),
             SizedBox(height: 8.0),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
@@ -160,7 +160,7 @@ class SystemInfoWidget extends StatelessWidget {
               SizedBox(width: 8.0),
               Text(
                 '${((i.rx / 1024) / 1024).toStringAsFixed(2)} MB',
-                style: theme.textTheme.body1.copyWith(fontSize: 25.0),
+                style: theme.textTheme.headline4.copyWith(fontSize: 25.0),
               )
             ]),
             SizedBox(height: 8.0),
@@ -169,10 +169,10 @@ class SystemInfoWidget extends StatelessWidget {
               SizedBox(width: 8.0),
               Text(
                 '${((i.tx / 1024) / 1024).toStringAsFixed(2)} MB',
-                style: theme.textTheme.body1.copyWith(fontSize: 25.0),
+                style: theme.textTheme.bodyText2.copyWith(fontSize: 25.0),
               )
             ]),
-            Text('Traffic', style: theme.textTheme.display1),
+            Text('Traffic', style: theme.textTheme.headline4),
           ],
         ),
       );
@@ -183,7 +183,7 @@ class SystemInfoWidget extends StatelessWidget {
 
   Widget _getSSHLine(List<NetworkInterface> interfaces, ThemeData theme) {
     if (interfaces.length == 1) {
-      var style = theme.textTheme.body1.copyWith(fontSize: 25.0);
+      var style = theme.textTheme.bodyText2.copyWith(fontSize: 25.0);
       var i = interfaces[0];
       return Padding(
         padding: const EdgeInsets.all(8.0),

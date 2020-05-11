@@ -85,7 +85,7 @@ class HalfGaugeChart extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 4.0),
                 child: Text(
                   header,
-                  style: theme.textTheme.display3.copyWith(fontSize: 30.0),
+                  style: theme.textTheme.headline2.copyWith(fontSize: 30.0),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -97,7 +97,7 @@ class HalfGaugeChart extends StatelessWidget {
               padding: valuePadding,
               child: Text(
                 value,
-                style: theme.textTheme.body2.copyWith(fontSize: 18.0),
+                style: theme.textTheme.bodyText1.copyWith(fontSize: 18.0),
               ),
             ),
           ),

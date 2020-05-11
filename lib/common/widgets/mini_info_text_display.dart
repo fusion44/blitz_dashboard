@@ -31,7 +31,8 @@ class MiniInfoTextDisplay extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 70.0),
                       child: Text(
                         subheader,
-                        style: theme.textTheme.body2.copyWith(fontSize: 18.0),
+                        style:
+                            theme.textTheme.bodyText1.copyWith(fontSize: 18.0),
                       ),
                     ),
                   )
@@ -42,12 +43,12 @@ class MiniInfoTextDisplay extends StatelessWidget {
                   child: Center(
                     child: Text(
                       content,
-                      style: theme.textTheme.display2
+                      style: theme.textTheme.headline3
                           .copyWith(fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
-                Text(header, style: theme.textTheme.display1),
+                Text(header, style: theme.textTheme.headline4),
               ],
             )
           ],
