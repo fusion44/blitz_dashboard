@@ -13,7 +13,11 @@ class NodeOverviewWidget extends StatelessWidget {
         if (state is LnInfoStateLoading) {
           return Text('Loading');
         } else if (state is LnInfoStateLoadingFinished) {
-          return LocalNodeInfoWidget(state.infoResponse, 'Info');
+          return LocalNodeInfoWidget(
+            state.infoResponse,
+            state.feeReport,
+            'Info',
+          );
         }
         return Text('Unknown State? $state');
       },

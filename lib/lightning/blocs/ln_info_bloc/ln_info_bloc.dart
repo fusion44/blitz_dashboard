@@ -42,12 +42,14 @@ class LnInfoBloc extends Bloc<LnInfoEvent, LnInfoState> {
       var infoRequest = GetInfoRequest();
       var walletBalanceRequest = WalletBalanceRequest();
       var channelBalanceRequest = ChannelBalanceRequest();
+      var feeReportRequest = FeeReportRequest();
       var opts = CallOptions(metadata: {'macaroon': macaroon});
 
       var responseList = await Future.wait([
         client.getInfo(infoRequest, options: opts),
         client.walletBalance(walletBalanceRequest, options: opts),
         client.channelBalance(channelBalanceRequest, options: opts),
+        client.feeReport(feeReportRequest, options: opts),
       ]).catchError((error) {
         print(error);
       });
@@ -58,6 +60,7 @@ class LnInfoBloc extends Bloc<LnInfoEvent, LnInfoState> {
         localNodeInfo,
         responseList[1],
         responseList[2],
+        responseList[3],
       );
     }
   }

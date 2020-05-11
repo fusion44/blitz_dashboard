@@ -36,13 +36,20 @@ class LnInfoStateLoadingFinished extends LnInfoState {
   final LocalNodeInfo infoResponse;
   final WalletBalanceResponse walletBalance;
   final ChannelBalanceResponse channelBalance;
+  final FeeReportResponse feeReport;
 
   LnInfoStateLoadingFinished(
     this.infoResponse,
     this.walletBalance,
     this.channelBalance,
+    this.feeReport,
   );
 
   @override
-  List<Object> get props => [infoResponse, walletBalance, channelBalance];
+  List<Object> get props => [
+        infoResponse,
+        walletBalance,
+        channelBalance,
+        feeReport,
+      ];
 }
