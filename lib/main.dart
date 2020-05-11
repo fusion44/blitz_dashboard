@@ -6,15 +6,18 @@ import 'package:blitz_gui/system/system_info_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:passcode_screen/circle.dart';
 import 'package:passcode_screen/keyboard.dart';
 import 'package:passcode_screen/passcode_screen.dart';
+import 'package:path/path.dart' show dirname, join;
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'bitcoind/blocs/info/bloc.dart';
 import 'system/blocs/info/bloc.dart';
 
-void main() {
+void main() async {
+  await DotEnv().load(join(dirname(Platform.script.path), '.env'));
   debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
   runApp(MyApp());
 }
