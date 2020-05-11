@@ -16,5 +16,13 @@
             "observatoryUri": "http://127.0.0.1:35261",
             "type": "dart"
         }
+        {
+            "name": "Hover",
+            "request": "attach",
+            "deviceId": "flutter-tester",
+            "observatoryUri": "${command:dart.promptForVmService}",
+            "type": "dart",
+            "program": "lib/main_desktop.dart"
+        }
     ]
 }
