@@ -14,6 +14,7 @@ import 'package:path/path.dart' show dirname, join;
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'bitcoind/blocs/info/bloc.dart';
+import 'common/connection_manager/bloc.dart';
 import 'system/blocs/info/bloc.dart';
 
 void main() async {
@@ -43,6 +44,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  ConnectionManagerBloc _connectionManagerBloc;
   SystemInfoBloc _systemInfoBloc;
   BitcoinInfoBloc _bitcoinInfoBloc;
   final RefreshController _refreshController =
@@ -56,6 +58,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
+    _connectionManagerBloc = ConnectionManagerBloc();
+    _connectionManagerBloc.add(AppStart());
     _systemInfoBloc = SystemInfoBloc();
     _systemInfoBloc.add(LoadSystemInfoEvent());
 
