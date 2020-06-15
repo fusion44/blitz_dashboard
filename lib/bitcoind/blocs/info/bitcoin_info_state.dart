@@ -1,6 +1,7 @@
-import 'package:blitz_gui/bitcoind/models/models.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
+
+import '../../models/models.dart';
 
 @immutable
 abstract class BitcoinInfoState extends Equatable {}

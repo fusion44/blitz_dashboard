@@ -1,7 +1,7 @@
-import 'package:blitz_gui/common/widgets/mini_info_text_display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../common/widgets/mini_info_text_display.dart';
 import 'blocs/info/bloc.dart';
 import 'models/models.dart';
 

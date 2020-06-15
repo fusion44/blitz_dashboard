@@ -1,8 +1,8 @@
-import 'package:blitz_gui/common/widgets/charts/half_gauge_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
+import '../common/widgets/charts/half_gauge_chart.dart';
 import '../constants.dart';
 import 'blocs/info/bloc.dart';
 import 'models/models.dart';

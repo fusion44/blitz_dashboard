@@ -1,7 +1,7 @@
-#application-name: "blitz_gui" # Uncomment to modify this value.
-#executable-name: "blitz_gui" # Uncomment to modify this value. Only lowercase a-z, numbers, underscores and no spaces
-#package-name: "blitzgui" # Uncomment to modify this value. Only lowercase a-z, numbers and no underscores or spaces
-license: "" # MANDATORY: Fill in your SPDX license name: https://spdx.org/licenses
+application-name: "Blitz Dashboard" # Uncomment to modify this value.
+executable-name: "blitz_dashboard" # Uncomment to modify this value. Only lowercase a-z, numbers, underscores and no spaces
+package-name: "blitz_dashboard" # Uncomment to modify this value. Only lowercase a-z, numbers and no underscores or spaces
+license: "MIT" # MANDATORY: Fill in your SPDX license name: https://spdx.org/licenses
 target: lib/main_desktop.dart
 branch: "" # Change to "@latest" to download the latest go-flutter version on every build
 # cache-path: "/home/YOURUSERNAME/.cache/" #  https://github.com/go-flutter-desktop/go-flutter/issues/184

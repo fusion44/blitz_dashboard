@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:blitz_gui/system/models/models.dart';
-import 'package:blitz_gui/system/models/system_info.dart';
+
 import 'package:bloc/bloc.dart';
+
 import './bloc.dart';
+import '../../models/models.dart';
+import '../../models/system_info.dart';
 
 /// Checks the type of [ProcessResult] stdout and converts it
 /// to a String no matter what and trims the resulting String.

@@ -1,6 +1,6 @@
-import 'package:blitz_gui/lightning/lnd_rpc/lnd_rpc.dart';
 import 'package:flutter/material.dart';
 
+import '../../lightning/lnd_rpc/lnd_rpc.dart';
 import '../../lightning/models/node_infos.dart';
 import 'data_item.dart';
 import 'mini_info_text_display.dart';

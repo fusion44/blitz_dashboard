@@ -1,5 +1,6 @@
-import 'package:blitz_gui/system/models/system_info.dart';
 import 'package:equatable/equatable.dart';
+
+import '../../models/system_info.dart';
 
 abstract class SystemInfoState extends Equatable {
   const SystemInfoState();

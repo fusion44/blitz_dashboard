@@ -1,4 +1,4 @@
-package com.example.raspiblitz_gui
+package com.raspiblitz.raspiblitz_dashboard
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

@@ -1,4 +1,4 @@
-import 'package:blitz_gui/bitcoind/models/models.dart';
+import 'models.dart';
 
 /// Convenience object that that holds data combined
 /// from different Bitcoin RPC calls

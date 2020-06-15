@@ -1,8 +1,9 @@
 import 'dart:math';
 
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:blitz_gui/constants.dart';
 import 'package:flutter/material.dart';
+
+import '../../../constants.dart';
 
 class HalfGaugeChart extends StatelessWidget {
   final List<GaugeSegment> gaugeSegments;

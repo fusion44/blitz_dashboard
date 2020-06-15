@@ -10,14 +10,15 @@
             "type": "dart"
         },
         {
-            "name": "Flutter Desktop",
+            "name": "Hover",
             "request": "attach",
             "deviceId": "flutter-tester",
-            "observatoryUri": "http://127.0.0.1:35261",
-            "type": "dart"
-        }
+            "observatoryUri": "http://127.0.0.1:50300/",
+            "type": "dart",
+            "program": "lib/main_desktop.dart"
+        },
         {
-            "name": "Hover",
+            "name": "Blitz Dashboard Remote",
             "request": "attach",
             "deviceId": "flutter-tester",
             "observatoryUri": "${command:dart.promptForVmService}",

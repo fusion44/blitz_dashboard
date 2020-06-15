@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:blitz_gui/bitcoind/models/models.dart';
+
 import 'package:bloc/bloc.dart';
+
 import './bloc.dart';
+import '../../models/models.dart';
 
 FutureOr<Map<String, dynamic>> _getBlockchainInfo() async {
   var res = await Process.run(
