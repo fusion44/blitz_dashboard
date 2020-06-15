@@ -10,6 +10,7 @@ FutureOr<Map<String, dynamic>> _getBlockchainInfo() async {
     'bitcoin-cli',
     [
       // '--conf=/mnt/btc/bitcoin/bitcoin_main.conf',
+      '--conf=/home/admin/.bitcoin/bitcoin.conf',
       'getblockchaininfo',
     ],
   );
@@ -35,6 +36,7 @@ FutureOr<Map<String, dynamic>> _getMempoolInfo() async {
     'bitcoin-cli',
     [
       // '--conf=/mnt/btc/bitcoin/bitcoin_main.conf',
+      '--conf=/home/admin/.bitcoin/bitcoin.conf',
       'getmempoolinfo',
     ],
   );
@@ -49,6 +51,7 @@ FutureOr<Map<String, dynamic>> _getNetworkInfo() async {
     'bitcoin-cli',
     [
       // '--conf=/mnt/btc/bitcoin/bitcoin_main.conf',
+      '--conf=/home/admin/.bitcoin/bitcoin.conf',
       'getnetworkinfo',
     ],
   );

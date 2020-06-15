@@ -1,5 +1,5 @@
-name: blitz_gui
-description: A GUI for a Raspiblitz node.
+name: blitz_dashboard
+description: A Dashboard for Raspiblitz Lighting nodes.
 
 version: 0.1.0
 
@@ -22,6 +22,7 @@ dependencies:
   protobuf: ^1.0.1
   grpc: ^2.1.3
   flutter_dotenv: ^2.1.0
+  get: ^2.13.0
   
 dev_dependencies:
   flutter_test:
