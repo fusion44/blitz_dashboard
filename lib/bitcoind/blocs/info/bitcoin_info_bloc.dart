@@ -64,8 +64,7 @@ FutureOr<Map<String, dynamic>> _getNetworkInfo() async {
 }
 
 class BitcoinInfoBloc extends Bloc<BitcoinInfoEvent, BitcoinInfoState> {
-  @override
-  BitcoinInfoState get initialState => InitialBitcoinInfoState();
+  BitcoinInfoBloc() : super(InitialBitcoinInfoState());
 
   @override
   Stream<BitcoinInfoState> mapEventToState(

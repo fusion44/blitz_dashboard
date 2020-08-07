@@ -10,7 +10,7 @@ class BitcoinInfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return BlocBuilder(
-      bloc: BlocProvider.of<BitcoinInfoBloc>(context),
+      cubit: BlocProvider.of<BitcoinInfoBloc>(context),
       builder: (_, BitcoinInfoState state) {
         if (state is InitialBitcoinInfoState ||
             (state is LoadingBitcoinInfoState)) {

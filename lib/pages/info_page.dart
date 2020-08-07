@@ -59,7 +59,7 @@ class _InfoPageState extends State<InfoPage> {
     return MultiBlocListener(
       listeners: [
         BlocListener<SystemInfoBloc, SystemInfoState>(
-          bloc: _systemInfoBloc,
+          cubit: _systemInfoBloc,
           listener: (_, state) {
             if (state is LoadedSystemInfoState ||
                 state is LoadSystemInfoErrorState) {
@@ -69,7 +69,7 @@ class _InfoPageState extends State<InfoPage> {
           },
         ),
         BlocListener<BitcoinInfoBloc, BitcoinInfoState>(
-          bloc: _bitcoinInfoBloc,
+          cubit: _bitcoinInfoBloc,
           listener: (_, state) {
             if (state is LoadedBitcoinInfoState ||
                 state is LoadBitcoinInfoErrorState) {
@@ -79,7 +79,7 @@ class _InfoPageState extends State<InfoPage> {
           },
         ),
         BlocListener<LnInfoBloc, LnInfoState>(
-          bloc: _lnInfoBloc,
+          cubit: _lnInfoBloc,
           listener: (_, state) {
             if (state is LnInfoStateLoadingFinished) {
               _lnInfoLoading = false;

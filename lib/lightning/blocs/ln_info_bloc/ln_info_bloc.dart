@@ -12,15 +12,12 @@ import 'ln_info_state.dart';
 class LnInfoBloc extends Bloc<LnInfoEvent, LnInfoState> {
   final ConnectionManagerBloc _connectionManagerBloc;
 
-  LnInfoBloc(this._connectionManagerBloc) {
+  LnInfoBloc(this._connectionManagerBloc) : super(InitialLnInfoState()) {
     _connectionManagerBloc.listen((ConnectionManagerState state) {
       if (state is ConnectionEstablishedState) add(LoadLnInfo());
       print(state);
     });
   }
-
-  @override
-  LnInfoState get initialState => InitialLnInfoState();
 
   @override
   Stream<LnInfoState> mapEventToState(

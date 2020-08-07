@@ -22,8 +22,7 @@ class ConnectionManagerBloc
 
   LndConnectionData _currentActiveConnection;
 
-  @override
-  ConnectionManagerState get initialState => InitialConnectionManagerState();
+  ConnectionManagerBloc() : super(InitialConnectionManagerState());
 
   @override
   Future<void> close() async {

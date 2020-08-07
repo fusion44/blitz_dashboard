@@ -12,7 +12,7 @@ class SystemInfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return BlocBuilder(
-      bloc: BlocProvider.of<SystemInfoBloc>(context),
+      cubit: BlocProvider.of<SystemInfoBloc>(context),
       builder: (_, SystemInfoState state) {
         if (state is InitialSystemInfoState ||
             (state is LoadingSystemInfoState)) {

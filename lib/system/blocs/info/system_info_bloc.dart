@@ -17,8 +17,7 @@ String _getStdOut(ProcessResult res) {
 }
 
 class SystemInfoBloc extends Bloc<SystemInfoEvent, SystemInfoState> {
-  @override
-  SystemInfoState get initialState => InitialSystemInfoState();
+  SystemInfoBloc() : super(InitialSystemInfoState());
 
   @override
   Stream<SystemInfoState> mapEventToState(
@@ -72,7 +71,7 @@ class SystemInfoBloc extends Bloc<SystemInfoEvent, SystemInfoState> {
       var hdd = _getStdOut(res).split('\n');
       int hardDriveTotal, hardDriveFree, hardDriveUsagePercent;
       hdd.forEach((String line) {
-        if (line.startsWith('/dev/sda')) {
+        if (line.startsWith('/dev/dm-0')) {
           var spl = line.split(' ');
           spl.removeWhere((String item) => item.isEmpty);
           hardDriveTotal = int.tryParse(spl[1]);

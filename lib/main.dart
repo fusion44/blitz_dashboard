@@ -94,16 +94,22 @@ class _MyHomePageState extends State<MyHomePage> {
         opaque: opaque,
         pageBuilder: (context, animation, secondaryAnimation) {
           return PasscodeScreen(
-            title: 'Passcode',
+            title: Text('Passcode'),
             passwordDigits: 4,
             circleUIConfig: circleUIConfig,
             keyboardUIConfig: keyboardUIConfig,
             passwordEnteredCallback: _onPasscodeEntered,
-            cancelLocalizedText: 'Cancel',
-            deleteLocalizedText: 'Delete',
             shouldTriggerVerification: _verificationNotifier.stream,
             backgroundColor: Colors.black.withOpacity(0.9),
             cancelCallback: _onPasscodeCancelled,
+            cancelButton: FlatButton(
+              onPressed: () => _onPasscodeCancelled,
+              child: Text('Cancel'),
+            ),
+            deleteButton: FlatButton(
+              onPressed: () => print('delete'),
+              child: Text('delete'),
+            ),
           );
         },
       ),
@@ -111,11 +117,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _onPasscodeEntered(String enteredPasscode) {
-    var isValid = '' == enteredPasscode;
+    var isValid = '1111' == enteredPasscode;
     _verificationNotifier.add(isValid);
     if (isValid) {
       if (wantsToQuit) {
-        exit(1);
+        exit(0);
       }
     }
   }
