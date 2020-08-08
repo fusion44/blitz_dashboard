@@ -13,6 +13,10 @@ class LnInfoBloc extends Bloc<LnInfoEvent, LnInfoState> {
   final ConnectionManagerBloc _connectionManagerBloc;
 
   LnInfoBloc(this._connectionManagerBloc) : super(InitialLnInfoState()) {
+    if (_connectionManagerBloc.state is ConnectionEstablishedState) {
+      add(LoadLnInfo());
+    }
+
     _connectionManagerBloc.listen((ConnectionManagerState state) {
       if (state is ConnectionEstablishedState) add(LoadLnInfo());
       print(state);
