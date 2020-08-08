@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import './bloc.dart';
 import '../../models/models.dart';
@@ -10,11 +11,7 @@ import '../../models/models.dart';
 FutureOr<Map<String, dynamic>> _getBlockchainInfo() async {
   var res = await Process.run(
     'bitcoin-cli',
-    [
-      // '--conf=/mnt/btc/bitcoin/bitcoin_main.conf',
-      '--conf=/home/admin/.bitcoin/bitcoin.conf',
-      'getblockchaininfo',
-    ],
+    ['--conf=${DotEnv().env['bitcoin_config']}', 'getblockchaininfo'],
   );
 
   var obj = json.decode(res.stdout.toString());
@@ -36,11 +33,7 @@ FutureOr<Map<String, dynamic>> _getBlockchainInfo() async {
 FutureOr<Map<String, dynamic>> _getMempoolInfo() async {
   var res = await Process.run(
     'bitcoin-cli',
-    [
-      // '--conf=/mnt/btc/bitcoin/bitcoin_main.conf',
-      '--conf=/home/admin/.bitcoin/bitcoin.conf',
-      'getmempoolinfo',
-    ],
+    ['--conf=${DotEnv().env['bitcoin_config']}', 'getmempoolinfo'],
   );
 
   var obj = json.decode(res.stdout.toString());
@@ -52,8 +45,7 @@ FutureOr<Map<String, dynamic>> _getNetworkInfo() async {
   var res = await Process.run(
     'bitcoin-cli',
     [
-      // '--conf=/mnt/btc/bitcoin/bitcoin_main.conf',
-      '--conf=/home/admin/.bitcoin/bitcoin.conf',
+      '--conf=${DotEnv().env['bitcoin_config']}',
       'getnetworkinfo',
     ],
   );
